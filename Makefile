@@ -1,9 +1,12 @@
-lib/libpong.a: src/ball.c include/ball.h
+lib/libpong.a: src/ball.c include/ball.h src/player.c include/player.h src/events.c include/events.h
+	gcc -c src/events.c -Iinclude
 	gcc -c src/ball.c -Iinclude
-	ar rcs $@ ball.o
+	gcc -c src/player.c -Iinclude
+	ar rcs $@ ball.o player.o events.o
 
-bin/main: src/main.c include/ball.h lib/libpong.a
+bin/main: src/main.c lib/libpong.a include/ball.h include/player.h include/events.h
 	gcc $< -lSDL2 -Iinclude -Llib -lpong -o $@
+
 clean:
 	@rm -f lib/*
 	@find . name '*.o' -exec rm -f {} \;
