@@ -12,5 +12,6 @@ typedef struct ball_t{
 
 void create_ball(ball *b);
 
+void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2); 
 	
 #endif
