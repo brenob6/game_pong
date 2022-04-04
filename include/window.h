@@ -3,7 +3,6 @@
 
 #include <SDL2/SDL.h>
 
-static const char *WINDOW_TITTLE = "PONG";
 static const int WINDOW_WIDTH = 1200;
 static const int WINDOW_HEIGHT = 600;
 
