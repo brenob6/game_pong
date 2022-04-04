@@ -68,6 +68,9 @@ int main(){
 				case SDLK_DOWN:
 					key_state[DOWN] = false;
 					break;
+				case SDLK_ESCAPE:
+					game_is_running = false;
+					break;
 				}
 			}
 		}
