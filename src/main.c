@@ -1,5 +1,4 @@
-#include <SDL2/SDL.h>
-
+#include <SDL2/SDL.h> 
 #include <stdbool.h>
 
 #include "ball.h"
@@ -16,6 +15,7 @@ int main(){
 
 	SDL_Window *window = NULL;
 	window = SDL_CreateWindow(TITTLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
+	SDL_SetWindowBordered(window, SDL_FALSE);
 
 	SDL_Renderer *renderer = NULL;
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
