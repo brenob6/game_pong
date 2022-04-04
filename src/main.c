@@ -4,8 +4,8 @@
 #include "ball.h"
 #include "player.h"
 #include "events.h"
+#include "window.h"
 
-static const char *TITTLE = "Pong";
 static const int WIDTH = 1200;
 static const int HEIGHT = 600;
 
@@ -14,7 +14,7 @@ bool key_state[] = {false, false, false, false};
 int main(){
 
 	SDL_Window *window = NULL;
-	window = SDL_CreateWindow(TITTLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
 	SDL_SetWindowBordered(window, SDL_FALSE);
 
 	SDL_Renderer *renderer = NULL;
@@ -32,8 +32,10 @@ int main(){
 
 	ball b;
 	create_ball(&b);
+
 	
 	while(game_is_running){
+
 
 		while(SDL_PollEvent(&event)){
 			if(event.type == SDL_QUIT) game_is_running = false;
@@ -80,6 +82,7 @@ int main(){
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
+		render_borders(renderer, window);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		SDL_RenderFillRect(renderer, &b.ball);
