@@ -6,16 +6,18 @@
 #include "events.h"
 #include "window.h"
 
-static const int WIDTH = 1200;
-static const int HEIGHT = 600;
-
 bool key_state[] = {false, false, false, false};
 
 int main(){
 
+	if ( SDL_Init( SDL_INIT_VIDEO)){
+
+		SDL_Log("error");
+		return -1;
+	}
+
 	SDL_Window *window = NULL;
-	window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
-	SDL_SetWindowBordered(window, SDL_FALSE);
+	window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
 	SDL_Renderer *renderer = NULL;
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -33,9 +35,7 @@ int main(){
 	ball b;
 	create_ball(&b);
 
-	
 	while(game_is_running){
-
 
 		while(SDL_PollEvent(&event)){
 			if(event.type == SDL_QUIT) game_is_running = false;
@@ -90,10 +90,12 @@ int main(){
 		SDL_RenderFillRect(renderer, &p2.player);
 
 		SDL_RenderPresent(renderer);
+
+		SDL_Delay(2);
 		
-	}
+	} 
 
-
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();

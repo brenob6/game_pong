@@ -2,7 +2,7 @@
 #include "window.h"
 
 static const int BALL_SIZE = 20;
-static const int BALL_SPEED = 1;
+static const int BALL_SPEED = 2;
 
 void create_ball(ball *b){
 	b->ball.w = BALL_SIZE;
