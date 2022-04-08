@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 
+extern const char *WINDOW_TITLE;
 extern const int WINDOW_WIDTH;
 extern const int WINDOW_HEIGHT; 
 

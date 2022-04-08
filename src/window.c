@@ -1,5 +1,7 @@
 #include "window.h"
 
+const char *WINDOW_TITLE = "PONG";
+
 const int WINDOW_WIDTH = 1200;
 const int WINDOW_HEIGHT = 600;
 
@@ -10,13 +12,12 @@ const SDL_Rect BORDER_UP = {.x = 100, .y = 70, .w = BORDER_WIDTH, .h = BORDER_HE
 
 const SDL_Rect BORDER_DOWN = { .x = 100, .y = 530, .w = BORDER_WIDTH, .h = BORDER_HEIGHT };
 
-void render_borders(SDL_Renderer *renderer, SDL_Window *window){ 
-	
+void render_borders(SDL_Renderer *renderer, SDL_Window *window){
+
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &BORDER_UP);
 	SDL_RenderFillRect(renderer, &BORDER_DOWN);
 }
-
 

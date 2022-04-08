@@ -1,0 +1,23 @@
+Plano de Projeto
+
+Tag: Alpha game.
+
+	Protótipo.
+
+Tópicos principais.
+
+	- Sistema de angulação da bolinha.
+	- Limitar movimento das raquetes.
+	- Sistema de score.
+	- Melhorar Makefile.
+
+Tag: Beta game.
+
+Tópicos secundários.
+
+	- Tela game over.
+	- Tela start.
+	- Sons.
+	- README.
+
+Tag: v1.0
