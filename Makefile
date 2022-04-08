@@ -8,7 +8,7 @@ lib/libpong.a: src/ball.c include/ball.h src/player.c include/player.h src/event
 
 bin/main: src/main.c lib/libpong.a include/ball.h include/player.h include/events.h
 	mkdir -p bin
-	gcc $< -lSDL2 -Iinclude -Llib -lpong -o $@
+	gcc $< -lSDL2 -Iinclude -Llib -lpong -lm -o $@
 
 clean:
 	@rm -f lib/*
