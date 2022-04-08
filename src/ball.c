@@ -1,13 +1,23 @@
 #include "ball.h"
-#include "window.h"
 
 static const int BALL_SIZE = 20;
 static const int BALL_SPEED = 10;
 
-static int angulation(int By, int Py){
+static void swap_increasing(ball *b){
 
-	float a = abs(Py - By) / 20.0;
+	b->increasing = !b->increasing;
+}
+
+static void set_angulation(ball *b, const SDL_Rect *p){
+
+	float a = abs(p->y - b->ball.y) / 20.0;
 	a = roundf(a);
+
+	if((int)a == 0 || (int)a == 1 || (int)a == 2){
+		if(b->increasing) swap_increasing(b);
+	}else
+		if(!b->increasing) swap_increasing(b);
+
 
 	switch((int) a){
 
@@ -24,35 +34,41 @@ static int angulation(int By, int Py){
 			a = 5;
 			break;
 	}
-	return a;
+
+	b->angulation = a;
 }
-	
+
 void create_ball(ball *b){
+
 	b->ball.w = BALL_SIZE;
 	b->ball.h = BALL_SIZE;
 	b->ball.x = 600;
 	b->ball.y = 300;
 	b->direction = true;
 	b->angulation = 0;
+	b->increasing = true;
 }
 
 void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2){
+
 	b->ball.x += b->direction ? BALL_SPEED : -BALL_SPEED;
-	b->ball.y += b->angulation;
+	b->ball.y += b->increasing ? b->angulation : -b->angulation;
 
 	if(SDL_HasIntersection(&b->ball, p1)){
 
-		b->angulation = angulation(b->ball.y, p1->y);
+		set_angulation(b, p1);
 		b->direction = !b->direction;
 	}
-		
+
 	if(SDL_HasIntersection(&b->ball, p2)){
 
-		b->angulation = angulation(b->ball.y, p2->y);
+		set_angulation(b, p2);
 		b->direction = !b->direction;
 	}
+
 	if(SDL_HasIntersection(&b->ball, &BORDER_UP) || SDL_HasIntersection(&b->ball, &BORDER_DOWN)){
 
-		b->angulation *= -1;
-	} 
+		swap_increasing(b);
+	}
+
 }
