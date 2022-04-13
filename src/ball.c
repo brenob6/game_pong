@@ -2,6 +2,8 @@
 
 static const int BALL_SIZE = 20;
 static const int BALL_SPEED = 10;
+static const int BALL_X = 580;
+static const int BALL_Y = 280;
 
 static void swap_increasing(ball *b){
 
@@ -42,8 +44,8 @@ void create_ball(ball *b){
 
 	b->ball.w = BALL_SIZE;
 	b->ball.h = BALL_SIZE;
-	b->ball.x = 600;
-	b->ball.y = 300;
+	b->ball.x = BALL_X;
+	b->ball.y = BALL_Y;
 	b->direction = true;
 	b->angulation = 0;
 	b->increasing = true;
@@ -69,6 +71,12 @@ void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2){
 	if(SDL_HasIntersection(&b->ball, &BORDER_UP) || SDL_HasIntersection(&b->ball, &BORDER_DOWN)){
 
 		swap_increasing(b);
+	}
+
+	if(b->ball.x < 50 || b->ball.x > 1150){
+
+		SDL_Delay(200);
+		create_ball(b);
 	}
 
 }
