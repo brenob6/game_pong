@@ -52,20 +52,20 @@ void create_ball(ball *b){
 	b->increasing = rand()%2;
 }
 
-void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2){
+void update_ball(ball *b, player *p1, player *p2){
 
 	b->ball.x += b->direction ? BALL_SPEED : -BALL_SPEED;
 	b->ball.y += b->increasing ? b->angulation : -b->angulation;
 
-	if(SDL_HasIntersection(&b->ball, p1)){
+	if(SDL_HasIntersection(&b->ball, &p1->player)){
 
-		set_angulation(b, p1);
+		set_angulation(b, &p1->player);
 		b->direction = !b->direction;
 	}
 
-	if(SDL_HasIntersection(&b->ball, p2)){
+	if(SDL_HasIntersection(&b->ball, &p2->player)){
 
-		set_angulation(b, p2);
+		set_angulation(b, &p2->player);
 		b->direction = !b->direction;
 	}
 
@@ -74,8 +74,15 @@ void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2){
 		swap_increasing(b);
 	}
 
-	if(b->ball.x < 50 || b->ball.x > 1150){
+	if(b->ball.x < 50){
 
+		p1->score++;
+		SDL_Delay(200);
+		create_ball(b);
+	}
+	if(b->ball.x > 1150){
+
+		p2->score++;
 		SDL_Delay(200);
 		create_ball(b);
 	}

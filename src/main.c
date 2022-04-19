@@ -87,7 +87,7 @@ int main(){
 		}
 
 		handle_events(key_state, &p1, &p2);
-		update_ball(&b, &p1.player, &p2.player);
+		update_ball(&b, &p1, &p2);
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);

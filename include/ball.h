@@ -9,6 +9,7 @@
 #include <time.h>
 
 #include "window.h"
+#include "player.h"
 
 typedef struct ball_t{
 	SDL_Rect ball;
@@ -19,6 +20,6 @@ typedef struct ball_t{
 
 void create_ball(ball *b);
 
-void update_ball(ball *b, SDL_Rect *p1, SDL_Rect *p2); 
+void update_ball(ball *b, player *p1, player *p2); 
 	
 #endif
