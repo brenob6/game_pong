@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+
 #include <stdbool.h>
 
 #include "ball.h"
@@ -12,21 +13,23 @@ const int FRAME_TIME = 1000 / FPS;
 
 int main(){
 
-	if ( SDL_Init(SDL_INIT_VIDEO)){
+	if (SDL_Init(SDL_INIT_VIDEO)){
 
 		SDL_Log("error");
 		return -1;
 	}
 
-	SDL_Window *window = NULL;
-	window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+	SDL_Window *window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
 
-	SDL_Renderer *renderer = NULL;
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	if(renderer == NULL){
+
+		SDL_Log("error");
+		return -2;
+	}
 
 	SDL_Event event;
-
-	static bool game_is_running = true;
 
 	player p1;
 	create_player(&p1, 1);
@@ -37,12 +40,11 @@ int main(){
 	ball b;
 	create_ball(&b);
 
-	int frame_start;
-	int frame_delay;
+	bool game_is_running = true;
 
 	while(game_is_running){
 
-		frame_start = SDL_GetTicks();
+		int frame_start = SDL_GetTicks();
 
 		while(SDL_PollEvent(&event)){
 			if(event.type == SDL_QUIT) game_is_running = false;
@@ -90,6 +92,7 @@ int main(){
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
 		render_borders(renderer, window);
+		display(renderer, 1, 2);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		SDL_RenderFillRect(renderer, &b.ball);
@@ -98,12 +101,11 @@ int main(){
 
 		SDL_RenderPresent(renderer);
 
-		frame_delay = SDL_GetTicks() - frame_start;
+		int frame_delay = SDL_GetTicks() - frame_start;
 
 		if(FRAME_TIME > frame_delay){
 			SDL_Delay(FRAME_TIME - frame_delay);
 		}
-
 
 	}
 
