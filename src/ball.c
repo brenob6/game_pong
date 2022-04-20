@@ -19,7 +19,6 @@ static void set_angulation(ball *b, const SDL_Rect *p){
 	}else
 		if(!b->increasing) swap_increasing(b);
 
-
 	switch((int) a){
 
 		case 0:
@@ -47,7 +46,7 @@ void create_ball(ball *b){
 	b->ball.h = BALL_SIZE;
 	b->ball.x = BALL_X;
 		b->ball.y = BORDER_UP_Y + BALL_SIZE + 10 + (rand() % (BORDER_DOWN_Y - (2 * BALL_SIZE) - 10 - BORDER_UP_Y));
-	b->direction = true;
+	b->direction = rand()%2;
 	b->angulation = 1 + (rand()%9);
 	b->increasing = rand()%2;
 }
@@ -79,12 +78,14 @@ void update_ball(ball *b, player *p1, player *p2){
 		p1->score++;
 		SDL_Delay(200);
 		create_ball(b);
+		b->direction = false;
 	}
 	if(b->ball.x > 1150){
 
 		p2->score++;
 		SDL_Delay(200);
 		create_ball(b);
+		b->direction = true;
 	}
 
 }
