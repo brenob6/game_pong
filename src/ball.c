@@ -1,7 +1,7 @@
 #include "ball.h"
 
 static const int BALL_SIZE = 20;
-static const int BALL_SPEED = 10;
+static const int BALL_SPEED = 15;
 static const int BALL_X = 580;
 
 static void swap_increasing(ball *b){
@@ -45,7 +45,7 @@ void create_ball(ball *b){
 	b->ball.w = BALL_SIZE;
 	b->ball.h = BALL_SIZE;
 	b->ball.x = BALL_X;
-		b->ball.y = BORDER_UP_Y + BALL_SIZE + 10 + (rand() % (BORDER_DOWN_Y - (2 * BALL_SIZE) - 10 - BORDER_UP_Y));
+	b->ball.y = BORDER_UP_Y + BALL_SIZE + 10 + (rand() % (BORDER_DOWN_Y - (2 * BALL_SIZE) - 10 - BORDER_UP_Y));
 	b->direction = rand()%2;
 	b->angulation = 1 + (rand()%9);
 	b->increasing = rand()%2;

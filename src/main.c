@@ -91,8 +91,8 @@ int main(){
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
-		render_borders(renderer, window);
-		display(renderer, 1, 2);
+		render_borders(renderer);
+		display(renderer, p1.score, p2.score);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		SDL_RenderFillRect(renderer, &b.ball);

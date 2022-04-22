@@ -13,8 +13,8 @@ extern const int BORDER_UP_Y;
 extern const SDL_Rect BORDER_DOWN;
 extern const int BORDER_DOWN_Y;
 
-void render_borders(SDL_Renderer *render, SDL_Window *window);
-void display(SDL_Renderer *renderer, int n, int side);
+void render_borders(SDL_Renderer *render);
+void display(SDL_Renderer *renderer, int score1, int score2);
 
 void create_display(SDL_Rect s[], int n);
 
