@@ -11,6 +11,8 @@ bool key_state[] = {false, false, false, false};
 const int FPS = 60;
 const int FRAME_TIME = 1000 / FPS;
 
+enum game_state {START = 1, RUNNING, OVER};
+
 int main(){
 
 	if (SDL_Init(SDL_INIT_VIDEO)){
@@ -41,65 +43,90 @@ int main(){
 	create_ball(&b);
 
 	bool game_is_running = true;
+	int state = START;
 
 	while(game_is_running){
 
 		int frame_start = SDL_GetTicks();
 
-		while(SDL_PollEvent(&event)){
-			if(event.type == SDL_QUIT) game_is_running = false;
+		if(state == START){
 
-			if(event.type == SDL_KEYDOWN){
-				switch(event.key.keysym.sym){
-				case SDLK_w:
-					key_state[LETTER_W] = true;
-					break;
-				case SDLK_s:
-					key_state[LETTER_S] = true;
-					break;
-				case SDLK_UP:
-					key_state[UP] = true;
-					break;
-				case SDLK_DOWN:
-					key_state[DOWN] = true;
-					break;
-				}
-			}
-			if(event.type == SDL_KEYUP){
-				switch(event.key.keysym.sym){
-				case SDLK_w:
-					key_state[LETTER_W] = false;
-					break;
-				case SDLK_s:
-					key_state[LETTER_S] = false;
-					break;
-				case SDLK_UP:
-					key_state[UP] = false;
-					break;
-				case SDLK_DOWN:
-					key_state[DOWN] = false;
-					break;
-				case SDLK_ESCAPE:
-					game_is_running = false;
-					break;
+			window_start(renderer);
+
+			while(SDL_PollEvent(&event)){
+
+				if(event.type == SDL_KEYUP){
+
+					switch(event.key.keysym.sym){
+					case SDLK_ESCAPE:
+						state = RUNNING;
+						game_is_running = false;
+						break;
+					case SDLK_SPACE:
+						state = RUNNING;
+						break;
+					}
 				}
 			}
 		}
+		if(state == RUNNING){
+			while(SDL_PollEvent(&event)){
+				if(event.type == SDL_QUIT) game_is_running = false;
 
-		handle_events(key_state, &p1, &p2);
-		update_ball(&b, &p1, &p2);
+				if(event.type == SDL_KEYDOWN){
+					switch(event.key.keysym.sym){
+					case SDLK_w:
+						key_state[LETTER_W] = true;
+						break;
+					case SDLK_s:
+						key_state[LETTER_S] = true;
+						break;
+					case SDLK_UP:
+						key_state[UP] = true;
+						break;
+					case SDLK_DOWN:
+						key_state[DOWN] = true;
+						break;
+					}
+				}
+				if(event.type == SDL_KEYUP){
+					switch(event.key.keysym.sym){
+					case SDLK_w:
+						key_state[LETTER_W] = false;
+						break;
+					case SDLK_s:
+						key_state[LETTER_S] = false;
+						break;
+					case SDLK_UP:
+						key_state[UP] = false;
+						break;
+					case SDLK_DOWN:
+						key_state[DOWN] = false;
+						break;
+					case SDLK_ESCAPE:
+						game_is_running = false;
+						break;
+					}
+				}
+			}
 
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-		SDL_RenderClear(renderer);
-		render_borders(renderer);
-		display(renderer, p1.score, p2.score);
+			handle_events(key_state, &p1, &p2);
+			update_ball(&b, &p1, &p2);
 
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &b.ball);
-		SDL_RenderFillRect(renderer, &p1.player);
-		SDL_RenderFillRect(renderer, &p2.player);
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+			SDL_RenderClear(renderer);
+			render_borders(renderer);
+			display(renderer, p1.score, p2.score);
 
-		SDL_RenderPresent(renderer);
+			SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+			SDL_RenderFillRect(renderer, &b.ball);
+			SDL_RenderFillRect(renderer, &p1.player);
+			SDL_RenderFillRect(renderer, &p2.player);
+
+			SDL_RenderPresent(renderer);
+		}
+
+		if(state == OVER){}
 
 		int frame_delay = SDL_GetTicks() - frame_start;
 
