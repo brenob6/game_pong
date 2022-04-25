@@ -1,4 +1,5 @@
 #include "window.h"
+#include "letters.h"
 
 const char *WINDOW_TITLE = "PONG";
 
@@ -143,6 +144,42 @@ void window_start(SDL_Renderer *renderer){
 	SDL_RenderFillRect(renderer, &rectg3);
 	SDL_Rect rectg4 = {855,y2,68,33};
 	SDL_RenderFillRect(renderer, &rectg4);
+
+	SDL_RenderPresent(renderer); 
+}
+
+void player_one_wins(SDL_Renderer *renderer) {
+	int x = WINDOW_WIDTH / 2 - (5 * UNIT_LENGTH) / 2;
+	int y = WINDOW_HEIGHT / 2 - (6 * UNIT_LENGTH);
+
+	letter_p(renderer, x, y, 1);
+	number_one(renderer, x + UNIT_LENGTH*4, y, 1);
+}
+
+void player_two_wins(SDL_Renderer *renderer) {
+	int x = WINDOW_WIDTH / 2 - (7 * UNIT_LENGTH) / 2;
+	int y = WINDOW_HEIGHT / 2 - (6 * UNIT_LENGTH);
+
+	letter_p(renderer, x, y, 1);
+	number_two(renderer, x + UNIT_LENGTH*4, y, 1);
+}
+
+void window_over(SDL_Renderer *renderer, int score1, int score2) {
+	SDL_SetRenderDrawColor(renderer,255,255,255,255);
+
+	if(score2 > score1) {
+		player_one_wins(renderer);
+	} else {
+		player_two_wins(renderer);
+	}
+
+	int x = WINDOW_WIDTH / 2 - (18 * UNIT_LENGTH) / 2;
+	int y = WINDOW_HEIGHT / 2 - (5 * UNIT_LENGTH);
+
+	letter_w(renderer, x, y + UNIT_LENGTH*6, 1);
+	letter_i(renderer, x + UNIT_LENGTH*6, y + UNIT_LENGTH*6, 1);
+	letter_n(renderer, x + UNIT_LENGTH*10, y + UNIT_LENGTH*6, 1);
+	letter_s(renderer, x + UNIT_LENGTH*15, y + UNIT_LENGTH*6, 1);
 
 	SDL_RenderPresent(renderer); 
 }

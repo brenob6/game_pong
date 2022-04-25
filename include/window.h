@@ -14,6 +14,7 @@ extern const SDL_Rect BORDER_DOWN;
 extern const int BORDER_DOWN_Y;
 
 void window_start(SDL_Renderer *renderer);
+void window_over(SDL_Renderer *renderer, int score1, int score2);
 
 void render_borders(SDL_Renderer *render);
 void display(SDL_Renderer *renderer, int score1, int score2);

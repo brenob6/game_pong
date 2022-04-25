@@ -109,6 +109,10 @@ int main(){
 					}
 				}
 			}
+			
+			if(p1.score > 9 || p2.score > 9) {
+				state = OVER;
+			}
 
 			handle_events(key_state, &p1, &p2);
 			update_ball(&b, &p1, &p2);
@@ -126,7 +130,29 @@ int main(){
 			SDL_RenderPresent(renderer);
 		}
 
-		if(state == OVER){}
+		if(state == OVER){
+			while(SDL_PollEvent(&event)){
+				if(event.type == SDL_QUIT) game_is_running = false;
+
+				if(event.type == SDL_KEYUP){
+					switch(event.key.keysym.sym){
+						case SDLK_SPACE:
+							p1.score = 0;
+							p2.score = 0;
+							state = RUNNING;
+							break;
+						case SDLK_ESCAPE:
+							game_is_running = false;
+							break;
+					}
+				}
+			}
+			
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+			SDL_RenderClear(renderer);
+
+			window_over(renderer, p1.score, p2.score);
+		}
 
 		int frame_delay = SDL_GetTicks() - frame_start;
 
