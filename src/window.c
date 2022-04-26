@@ -28,16 +28,16 @@ const SDL_Rect BORDER_DOWN = {.x = 100, .y = BORDER_DOWN_Y, .w = BORDER_WIDTH, .
 
 const int SCORES[] = { 
 
-	0b0111111,
-	0b0110000,
-	0b1011011,
-	0b1001111,
-	0b1100110,
-	0b1101101,
-	0b1111100,
-	0b0000111,
-	0b1111111,
-	0b1100111
+	0x3F,
+	0x30,
+	0x5B,
+	0x4F,
+	0x66,
+	0x6D,
+	0x7C,
+	0x07,
+	0x7F,
+	0x67
 };
 
 
