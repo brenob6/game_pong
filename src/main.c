@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <stdbool.h>
 
@@ -42,6 +43,14 @@ int main(){
 	ball b;
 	create_ball(&b);
 
+	TTF_Init();
+	TTF_Font *font = TTF_OpenFont ("./square-deal/square-deal.ttf", 50);
+
+	if(font == NULL){
+		SDL_Log("Error: nao foi possivel carregar fonte");
+		return -3;
+	}
+	
 	bool game_is_running = true;
 	int state = START;
 
@@ -51,7 +60,7 @@ int main(){
 
 		if(state == START){
 
-			window_start(renderer);
+			window_start(renderer, font);
 
 			while(SDL_PollEvent(&event)){
 
@@ -68,6 +77,7 @@ int main(){
 					}
 				}
 			}
+
 		}
 		if(state == RUNNING){
 			while(SDL_PollEvent(&event)){

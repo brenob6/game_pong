@@ -102,7 +102,7 @@ void display(SDL_Renderer *renderer, int score1, int score2){
 	}
 }
 
-void window_start(SDL_Renderer *renderer){
+void window_start(SDL_Renderer *renderer, TTF_Font *font){
 
 	int x = 400, y = 230;
 
@@ -153,6 +153,22 @@ void window_start(SDL_Renderer *renderer){
 	SDL_RenderFillRect(renderer, &rectg3);
 	SDL_Rect rectg4 = {855,y2,68,33};
 	SDL_RenderFillRect(renderer, &rectg4);
+
+	SDL_Color white = {255, 255, 255};
+	SDL_Surface *surfaceText = TTF_RenderText_Solid(font, "Pressione espaco para comecar", white);
+
+	SDL_Texture *textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
+
+	SDL_FreeSurface(surfaceText);
+
+	SDL_Rect mensage;
+	mensage.x = 400;
+	mensage.y = 500;
+	mensage.w = 400;
+	mensage.h = 50;
+
+
+	SDL_RenderCopy(renderer, textureText, NULL, &mensage);
 
 	SDL_RenderPresent(renderer); 
 }
