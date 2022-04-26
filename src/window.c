@@ -78,6 +78,15 @@ void display(SDL_Renderer *renderer, int score1, int score2){
 	int on1 = SCORES[score2];
 	int on2 = SCORES[score1];
 
+	int x = 0;
+	int y = 0;
+
+	letter_p(renderer, x + increment(6, 1), y + increment(1, 0.3), 0.3);
+	number_two(renderer, x + increment(4, 0.3) + increment(6, 1), y + increment(1, 0.3), 0.3);
+
+	letter_p(renderer, x + increment(26, 1), y + increment(1, 0.3), 0.3);
+	number_one(renderer, x + increment(4, 0.3) + increment(26, 1), y + increment(1, 0.3), 0.3);
+
 	for(int i = 0; i < 7; i++){
 
 		if(on1 & 1){
@@ -149,37 +158,37 @@ void window_start(SDL_Renderer *renderer){
 }
 
 void player_one_wins(SDL_Renderer *renderer) {
-	int x = WINDOW_WIDTH / 2 - (5 * UNIT_LENGTH) / 2;
-	int y = WINDOW_HEIGHT / 2 - (6 * UNIT_LENGTH);
+	int x = WINDOW_WIDTH / 2 - (increment(5, 1) / 2);
+	int y = WINDOW_HEIGHT / 2 - (increment(6, 1));
 
 	letter_p(renderer, x, y, 1);
-	number_one(renderer, x + UNIT_LENGTH*4, y, 1);
+	number_one(renderer, x + increment(4, 1), y, 1);
 }
 
 void player_two_wins(SDL_Renderer *renderer) {
-	int x = WINDOW_WIDTH / 2 - (7 * UNIT_LENGTH) / 2;
-	int y = WINDOW_HEIGHT / 2 - (6 * UNIT_LENGTH);
+	int x = WINDOW_WIDTH / 2 - (increment(7, 1)) / 2;
+	int y = WINDOW_HEIGHT / 2 - (increment(6, 1));
 
 	letter_p(renderer, x, y, 1);
-	number_two(renderer, x + UNIT_LENGTH*4, y, 1);
+	number_two(renderer, x + increment(4, 1), y, 1);
 }
 
 void window_over(SDL_Renderer *renderer, int score1, int score2) {
 	SDL_SetRenderDrawColor(renderer,255,255,255,255);
 
-	if(score2 > score1) {
+	if(score1 > score2) {
 		player_one_wins(renderer);
 	} else {
 		player_two_wins(renderer);
 	}
 
-	int x = WINDOW_WIDTH / 2 - (18 * UNIT_LENGTH) / 2;
-	int y = WINDOW_HEIGHT / 2 - (5 * UNIT_LENGTH);
+	int x = WINDOW_WIDTH / 2 - (increment(18, 1)) / 2;
+	int y = WINDOW_HEIGHT / 2 - (increment(5, 1));
 
-	letter_w(renderer, x, y + UNIT_LENGTH*6, 1);
-	letter_i(renderer, x + UNIT_LENGTH*6, y + UNIT_LENGTH*6, 1);
-	letter_n(renderer, x + UNIT_LENGTH*10, y + UNIT_LENGTH*6, 1);
-	letter_s(renderer, x + UNIT_LENGTH*15, y + UNIT_LENGTH*6, 1);
+	letter_w(renderer, x, y + increment(6, 1), 1);
+	letter_i(renderer, x + increment(6, 1), y + increment(6, 1), 1);
+	letter_n(renderer, x + increment(10, 1), y + increment(6, 1), 1);
+	letter_s(renderer, x + increment(15, 1), y + increment(6, 1), 1);
 
 	SDL_RenderPresent(renderer); 
 }

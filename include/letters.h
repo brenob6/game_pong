@@ -5,6 +5,8 @@
 
 extern const int UNIT_LENGTH;
 
+int increment(int amount, double scale);
+
 void letter_p(SDL_Renderer *renderer, int x, int y, double scale);
 void number_one(SDL_Renderer *renderer, int x, int y, double scale);
 void number_two(SDL_Renderer *renderer, int x, int y, double scale);
