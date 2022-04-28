@@ -155,7 +155,7 @@ void window_start(SDL_Renderer *renderer, TTF_Font *font){
 	SDL_RenderFillRect(renderer, &rectg4);
 
 	SDL_Color white = {255, 255, 255};
-	SDL_Surface *surfaceText = TTF_RenderText_Solid(font, "Pressione espaco para comecar", white);
+	SDL_Surface *surfaceText = TTF_RenderText_Solid(font, "<Press space to start>", white);
 
 	SDL_Texture *textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
 

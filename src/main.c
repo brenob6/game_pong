@@ -44,7 +44,7 @@ int main(){
 	create_ball(&b);
 
 	TTF_Init();
-	TTF_Font *font = TTF_OpenFont ("./square-deal/square-deal.ttf", 50);
+	TTF_Font *font = TTF_OpenFont ("./squarefont/Square.ttf", 50);
 
 	if(font == NULL){
 		SDL_Log("Error: nao foi possivel carregar fonte");
@@ -64,6 +64,7 @@ int main(){
 
 			while(SDL_PollEvent(&event)){
 
+				if(event.type == SDL_QUIT) game_is_running = false;
 				if(event.type == SDL_KEYUP){
 
 					switch(event.key.keysym.sym){
