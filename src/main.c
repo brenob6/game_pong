@@ -77,7 +77,6 @@ int main(){
 
 					switch(event.key.keysym.sym){
 					case SDLK_ESCAPE:
-						state = RUNNING;
 						game_is_running = false;
 						break;
 					case SDLK_SPACE:

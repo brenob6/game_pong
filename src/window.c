@@ -106,7 +106,7 @@ void window_start(SDL_Renderer *renderer, TTF_Font *font){
 		winSound = Mix_LoadWAV( "sounds/win.wav" );
 	}
 
-	int x = 400, y = 230;
+	int x = 350, y = 230;
 
 	int y3 = 337, y2 = 290;
 
@@ -127,33 +127,33 @@ void window_start(SDL_Renderer *renderer, TTF_Font *font){
 	SDL_RenderFillRect(renderer, &recto);
 	SDL_Rect recto1 = {x+145,y,105,33};
 	SDL_RenderFillRect(renderer, &recto1);
-	SDL_Rect recto2 = {620,y,35,140};
+	SDL_Rect recto2 = {570,y,35,140};
 	SDL_RenderFillRect(renderer, &recto2);
 	SDL_Rect recto3 = {x+145,y3,105,33};
 	SDL_RenderFillRect(renderer, &recto3);
 	
 	//Letra N
-	SDL_Rect rectn = {665,y,35,140};
+	SDL_Rect rectn = {615,y,35,140};
 	SDL_RenderFillRect(renderer, &rectn);
-	SDL_Rect rectn1 = {665,y,66,33};
+	SDL_Rect rectn1 = {615,y,66,33};
 	SDL_RenderFillRect(renderer, &rectn1);
-	SDL_Rect rectn2 = {713,y,35,140};
+	SDL_Rect rectn2 = {663,y,35,140};
 	SDL_RenderFillRect(renderer, &rectn2);
-	SDL_Rect rectn3 = {713,y3,66,33};
+	SDL_Rect rectn3 = {663,y3,66,33};
 	SDL_RenderFillRect(renderer, &rectn3);
-	SDL_Rect rectn4 = {761,y,35,140};
+	SDL_Rect rectn4 = {711,y,35,140};
 	SDL_RenderFillRect(renderer, &rectn4);
 
 	//Letra G
-	SDL_Rect rectg = {805,y,117,33};
+	SDL_Rect rectg = {755,y,117,33};
 	SDL_RenderFillRect(renderer, &rectg);
-	SDL_Rect rectg1 = {805,y,35,140};
+	SDL_Rect rectg1 = {755,y,35,140};
 	SDL_RenderFillRect(renderer, &rectg1);
-	SDL_Rect rectg2 = {805,y3,105,33};
+	SDL_Rect rectg2 = {755,y3,105,33};
 	SDL_RenderFillRect(renderer, &rectg2);
-	SDL_Rect rectg3 = {888,y2,35,80};
+	SDL_Rect rectg3 = {838,y2,35,80};
 	SDL_RenderFillRect(renderer, &rectg3);
-	SDL_Rect rectg4 = {855,y2,68,33};
+	SDL_Rect rectg4 = {805,y2,68,33};
 	SDL_RenderFillRect(renderer, &rectg4);
 
 	SDL_Color white = {255, 255, 255};
