@@ -12,6 +12,10 @@
 #include "window.h"
 #include "player.h"
 
+extern Mix_Chunk *impactSound;
+extern Mix_Chunk *wallSound;
+extern Mix_Chunk *scoreSound;
+
 typedef struct ball_t{
 	SDL_Rect ball;
 	int angulation;
@@ -25,8 +29,5 @@ void create_ball(ball *b);
 
 void update_ball(ball *b, player *p1, player *p2);
 
-Mix_Chunk *impactSound;
-Mix_Chunk *wallSound;
-Mix_Chunk *scoreSound;
 	
 #endif

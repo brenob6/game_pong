@@ -12,6 +12,8 @@ static const int BORDER_HEIGHT = 10;
 const int BORDER_UP_Y = 70;
 const int BORDER_DOWN_Y = 530;
 
+Mix_Chunk *winSound = NULL;
+
 const SDL_Rect BORDER_UP = {.x = 100, .y = BORDER_UP_Y, .w = BORDER_WIDTH, .h = BORDER_HEIGHT};
 
 const SDL_Rect BORDER_DOWN = {.x = 100, .y = BORDER_DOWN_Y, .w = BORDER_WIDTH, .h = BORDER_HEIGHT};

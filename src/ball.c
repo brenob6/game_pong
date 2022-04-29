@@ -1,7 +1,11 @@
 #include "ball.h"
 
+Mix_Chunk *impactSound = NULL;
+Mix_Chunk *wallSound = NULL;
+Mix_Chunk *scoreSound = NULL;
+
 static const int BALL_SIZE = 20;
-static const int BALL_SPEED = 15;
+static const int BALL_SPEED = 12;
 static const int BALL_X = 580;
 
 void setup_ball (){
