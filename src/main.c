@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <stdbool.h>
 
@@ -16,9 +17,15 @@ enum game_state {START = 1, RUNNING, OVER};
 
 int main(){
 
-	if (SDL_Init(SDL_INIT_VIDEO)){
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)){
 
 		SDL_Log("error");
+		return -1;
+	}
+
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
+
+		printf( "error" );
 		return -1;
 	}
 
@@ -42,6 +49,7 @@ int main(){
 
 	ball b;
 	create_ball(&b);
+	setup_ball();
 
 	TTF_Init();
 	TTF_Font *font = TTF_OpenFont ("./squarefont/Square.ttf", 50);
@@ -122,6 +130,7 @@ int main(){
 			}
 			
 			if(p1.score > 9 || p2.score > 9) {
+				Mix_PlayChannel( -1, winSound, 16 );
 				state = OVER;
 			}
 
@@ -150,6 +159,7 @@ int main(){
 						case SDLK_SPACE:
 							p1.score = 0;
 							p2.score = 0;
+							Mix_HaltChannel(-1);
 							state = RUNNING;
 							break;
 						case SDLK_ESCAPE:

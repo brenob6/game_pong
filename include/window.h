@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 
 extern const char *WINDOW_TITLE;
 
@@ -21,5 +22,7 @@ void render_borders(SDL_Renderer *render);
 void display(SDL_Renderer *renderer, int score1, int score2);
 
 void create_display(SDL_Rect s[], int n); 
+
+Mix_Chunk *winSound;
 
 #endif

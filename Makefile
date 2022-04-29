@@ -1,7 +1,7 @@
 CC := gcc
 
 CFLAGS := -Wall -Wextra -pedantic
-LFLAGS := -lpong -lSDL2 -lSDL2_ttf
+LFLAGS := -lpong -lSDL2 -lSDL2_ttf -lSDL2_mixer
 
 INC := include
 SRC := src

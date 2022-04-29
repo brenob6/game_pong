@@ -68,7 +68,6 @@ void create_display(SDL_Rect s[7], int n){
 
 }
 void display(SDL_Renderer *renderer, int score1, int score2){
-
 	SDL_Rect d1[7];
 	create_display(d1, 1);
 
@@ -103,6 +102,9 @@ void display(SDL_Renderer *renderer, int score1, int score2){
 }
 
 void window_start(SDL_Renderer *renderer, TTF_Font *font){
+	if(winSound == NULL) {
+		winSound = Mix_LoadWAV( "sounds/win.wav" );
+	}
 
 	int x = 400, y = 230;
 

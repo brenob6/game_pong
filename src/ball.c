@@ -4,6 +4,12 @@ static const int BALL_SIZE = 20;
 static const int BALL_SPEED = 15;
 static const int BALL_X = 580;
 
+void setup_ball (){
+	impactSound = Mix_LoadWAV( "sounds/impact.wav" );
+	wallSound = Mix_LoadWAV( "sounds/wall.wav" );
+	scoreSound = Mix_LoadWAV( "sounds/score.wav" );
+}
+
 static void swap_increasing(ball *b){
 
 	b->increasing = !b->increasing;
@@ -60,21 +66,25 @@ void update_ball(ball *b, player *p1, player *p2){
 
 		set_angulation(b, &p1->player);
 		b->direction = !b->direction;
+		Mix_PlayChannel( -1, impactSound, 0 );
 	}
 
 	if(SDL_HasIntersection(&b->ball, &p2->player)){
 
 		set_angulation(b, &p2->player);
 		b->direction = !b->direction;
+		Mix_PlayChannel( -1, impactSound, 0 );
 	}
 
 	if(SDL_HasIntersection(&b->ball, &BORDER_UP) || SDL_HasIntersection(&b->ball, &BORDER_DOWN)){
+		Mix_PlayChannel( -1, wallSound, 0 );
 
 		swap_increasing(b);
 	}
 
 	if(b->ball.x < 50){
 
+		Mix_PlayChannel( -1, scoreSound, 0 );
 		p1->score++;
 		SDL_Delay(200);
 		create_ball(b);
@@ -82,6 +92,7 @@ void update_ball(ball *b, player *p1, player *p2){
 	}
 	if(b->ball.x > 1150){
 
+		Mix_PlayChannel( -1, scoreSound, 0 );
 		p2->score++;
 		SDL_Delay(200);
 		create_ball(b);

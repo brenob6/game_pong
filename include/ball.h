@@ -2,6 +2,7 @@
 #define BALL_H
 	
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -18,8 +19,14 @@ typedef struct ball_t{
 	bool increasing;
 } ball;
 
+void setup_ball();
+
 void create_ball(ball *b);
 
-void update_ball(ball *b, player *p1, player *p2); 
+void update_ball(ball *b, player *p1, player *p2);
+
+Mix_Chunk *impactSound;
+Mix_Chunk *wallSound;
+Mix_Chunk *scoreSound;
 	
 #endif
