@@ -9,6 +9,7 @@ Recriar o jogo Pong utilizando a linguagem de programação C e a biblioteca SDL
 É necessário que estejam instalados:
 * libSDL2-dev
 * libSDL2-ttf-dev
+* libsdl2-mixer-dev
 
 ## Instalação
 
